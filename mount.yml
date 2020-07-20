@@ -1,0 +1,12 @@
+- hosts: all
+  vars_files:
+    - var.yml
+  tasks:
+  - name: mount efs partition to instance 
+    mount:
+        fstype: nfs
+        src: "{{ source }}"
+        path: /var/www/html
+        state: mounted
+
+        

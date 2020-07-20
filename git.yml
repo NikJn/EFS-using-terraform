@@ -1,0 +1,6 @@
+- hosts: git
+  tasks:
+        - name: Download source code from Github to instance
+          git:
+                repo: https://github.com/NikJn/task.git
+                dest: /var/www/html/

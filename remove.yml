@@ -1,0 +1,24 @@
+- hosts: all
+  tasks:
+        - find:
+                paths: "/var/www/html/"
+                hidden: true
+                recurse: true
+          register: collected_files
+        
+        - find:
+                paths: "/var/www/html/"
+                hidden: true
+                recurse: true
+                file_type: directory
+          register: collected_directory
+
+        - file:
+                path: "{{ item.path }}"
+                state: absent
+          with_items: >
+                {{ 
+                   collected_files.files
+                   + collected_directory.files
+                }}      
+                
